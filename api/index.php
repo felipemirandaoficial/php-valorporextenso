@@ -25,9 +25,12 @@ $mes = traduzirMes(date('F'));
 function removerFormatacaoNumero( $strNumero )
     {
  
-       $strNumero = trim(strtr($strNumero, ['R$' => '']));
- 
-        $vetVirgula = explode( ",", $strNumero );
+         //$strNumero = trim(strtr($strNumero, ['R$' => '']));
+        //$vetVirgula = explode( ",", $strNumero );
+	
+	 $strNumero = str_replace(',', '.', $strNumero);
+   	 $vetVirgula = explode(".", $strNumero);
+	    
         if ( count( $vetVirgula ) == 1 )
         {
             $acentos = array(".");
@@ -140,6 +143,7 @@ function valorPorExtenso( $valor = 0, $bolExibirMoeda = true, $bolPalavraFeminin
     }
 //para usar utilize GET (linkdominio/?valor=212310)
 $valor = $_GET['valor'];
+$falar = $_GET['type'];
 $valor_extenso = valorPorExtenso($valor,true,false);
 $valor1 = number_format( $valor, 2, ".", "." );
 $inteiro1 = explode( ".", $valor1 );
@@ -155,4 +159,4 @@ strong {
     display: inline-block;// also works with display:block
 }
 </style>
-<h3>R$ <?=$valor1?> - <?=$valor_extenso?></h3>
+<h3>R$ <?=$valor1?><?php if($falar == 'true'){ echo ' - ' . $valor_extenso; }?></h3>
