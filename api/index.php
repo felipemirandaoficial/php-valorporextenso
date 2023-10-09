@@ -159,4 +159,10 @@ strong {
     display: inline-block;// also works with display:block
 }
 </style>
-<h3>R$ <?=$valor1?><?php if($falar == 'true'){ echo ' - ' . $valor_extenso; }?></h3>
+<?php
+if($falar == 'true'){
+echo "<h3>$valor_extenso</h3>";
+}else{
+echo "<h3>$valor1</h3>";
+}
+?>
