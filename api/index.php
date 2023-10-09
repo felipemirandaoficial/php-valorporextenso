@@ -25,7 +25,7 @@ $mes = traduzirMes(date('F'));
 function removerFormatacaoNumero( $strNumero )
     {
  
-        $strNumero = trim( str_replace( "R$", null, $strNumero ) );
+       $strNumero = trim(strtr($strNumero, ['R$' => '']));
  
         $vetVirgula = explode( ",", $strNumero );
         if ( count( $vetVirgula ) == 1 )
